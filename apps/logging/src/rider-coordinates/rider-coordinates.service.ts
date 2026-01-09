@@ -23,6 +23,9 @@ export class RiderCoordinatesService {
       rider: riderId,
     });
     
+    if (coordinates.length === 0) { 
+      return { message: 'No coordinates found for this rider.' };
+    };
     const pattern = { cmd: 'get-rider' };
     const payload = { id: riderId };
     const rider = await firstValueFrom(this.client.send(pattern, payload));
